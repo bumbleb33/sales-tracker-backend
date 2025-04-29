@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import create_db_and_tables
-from app.routers import admin
+from app.routers import sales, admin
 
 app = FastAPI()
 
-# CORS for frontend connection
-origins = ["*"]  # Replace with your Vercel domain in production
+origins = ["*"]  # Update this with your frontend URL for production
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,9 +19,9 @@ app.add_middleware(
 def on_startup():
     create_db_and_tables()
 
-# Include routers
+app.include_router(sales.router)
 app.include_router(admin.router)
 
 @app.get("/")
 def root():
-    return {"message": "Sales Tracker Backend with Targets & Incentives"}
+    return {"message": "Sales Tracker Backend: Sales + Admin API"}
