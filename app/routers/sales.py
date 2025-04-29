@@ -5,6 +5,7 @@ from app.database import SessionLocal, Sale
 
 router = APIRouter(prefix="/sales", tags=["Sales"])
 
+
 class SaleCreate(BaseModel):
     executive_name: str
     model: str

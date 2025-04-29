@@ -13,3 +13,7 @@ app.include_router(sales.router)
 @app.get("/")
 def root():
     return {"message": "Sales Tracker API running with Sales endpoint"}
+
+@app.get("/routes")
+def list_routes():
+    return [route.path for route in app.router.routes]
