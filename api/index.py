@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from mangum import Mangum  # <-- Needed for Vercel serverless
+from mangum import Mangum
 
 app = FastAPI()
 
 @app.get("/")
-def read_root():
-    return JSONResponse({"message": "Sales Tracker API running!"})
+def root():
+    return JSONResponse({"message": "Sales Tracker API running via Vercel!"})
 
-handler = Mangum(app)  # <-- Important for serverless
+handler = Mangum(app)
