@@ -1,8 +1,15 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from app.routers import sales
+from app.database import create_db_and_tables
 
 app = FastAPI()
 
+@app.on_event("startup")
+def startup():
+    create_db_and_tables()
+
+app.include_router(sales.router)
+
 @app.get("/")
-def read_root():
-    return JSONResponse({"message": "Sales Tracker API running on Render!"})
+def root():
+    return {"message": "Sales Tracker API running with Sales endpoint"}
