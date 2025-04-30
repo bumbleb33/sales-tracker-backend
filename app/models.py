@@ -9,6 +9,8 @@ class Sale(Base):
     amount_collected = Column(Float)
     region = Column(String)
     date = Column(Date)
+    units_sold = Column(Integer, default=1)
+
 
 class Target(Base):
     __tablename__ = "targets"

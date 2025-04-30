@@ -6,6 +6,8 @@ class SaleCreate(BaseModel):
     model: str
     amount_collected: float
     region: str
+    units_sold: int = 1
+
 
 class TargetCreate(BaseModel):
     region: str
